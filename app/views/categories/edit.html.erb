@@ -1,0 +1,16 @@
+<div class="form-horizontal">
+	<div class="container" %>
+		<center><h2 class="text-danger">Category</h2></center>
+		
+			<%= form_for @category do |c| %>
+				<div class="form-group">
+					<%= c.label :name,class:"control-label col-sm-2" %>
+				<div class="col-sm-8">
+					<%= c.text_field :name,class:"form-control" %>
+				</div>		
+				</div>
+					<%= c.submit "Save category",class:"btn btn-sm btn-info col-sm-offset-2" %>
+			<% end %><br/>
+			<%= link_to "All caterogies",categories_path,class:"btn btn-sm btn-info col-sm-offset-2" %>
+	</div>
+</div>

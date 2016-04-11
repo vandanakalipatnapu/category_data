@@ -1,0 +1,31 @@
+ <style>
+ 	.align{font-size: 18px;}
+ 	.alignment{text-align:center;}
+ </style>
+
+<div class="container">
+	<center><h2 class="text-danger">My Bookings</h2></center>
+	<div class="text-success align">User Email: <%= current_user.email %><br/></div>
+	<div class="text-success">Number of Books Taken:<span class="align"> <%= current_user.books.count %></span><br/></div>
+	
+	<div class="table">
+		<table class="table table-hover ">
+			<tr class="alignment">
+				<th >Book Id</th>
+				<th>Book Name</th>
+			</tr>
+
+			<% current_user.books.each do |user| %> 
+				<tr>
+				  <td><%= user.id%></td>
+				  <td><%= user.book_name %></td>
+				  
+				</tr>
+			<%end%> 
+		</table>
+
+		<span class="align text-success">Description :</span>  <%= @book.description %>
+	</div>
+	<%= link_to "All Books",books_path ,class:"btn btn-sm btn-info" %>
+
+</div>

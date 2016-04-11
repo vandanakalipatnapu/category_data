@@ -1,0 +1,25 @@
+<style>
+	.size{font-size: 15px;}
+</style>
+<div class="container">
+	<center><h2 class="text-danger">All Categories</h2></center>	
+<h4 class="text-info">Category:</h4>
+	<% @categories.each do |category| %>
+		<ul>
+			<li class="text-success size"><%= link_to category.name %>
+				
+				<% if current_user %>
+					<% if current_user.role== "admin" %>
+						<%= link_to "Edit",edit_category_path(category),class:"btn btn-sm btn-info col-sm-offset-1" %>
+						<%= link_to "Delete",category,method: :delete,data:{confirm:"Are you sure to Delete?"},class:"btn btn-sm btn-info" %></li>
+					
+					<%else%>
+				<%end%>
+			<% end %>
+			| no.of books :<%= category.books.count %>
+		</ul>
+
+	<%end%>
+	
+	<%= link_to "new category",new_category_path,class:"btn btn-sm btn-info" %>
+</div>

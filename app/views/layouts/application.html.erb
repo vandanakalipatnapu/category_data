@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CategoryData</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<!--  -->
+ <!-- <% if user_signed_in? %>  -->
+
+ <!-- <%= link_to "sign out",destroy_user_session_path,method: :delete %>  -->
+
+
+ <!-- <% else %>  -->
+
+ <!-- <%= link_to "sign in",new_user_session_path %>  -->
+ <!-- <%= link_to "sign up",new_user_registration_path %>  -->
+
+ <!-- <% end %>  -->
+
+<%= nav_bar brand: "Book Store" do %>
+    <%= menu_group do %>
+        <%= menu_item "Books",books_path %>
+        <%= menu_item "New Book", new_book_path %>
+        <%= menu_item "Category", categories_path %>
+        <%= menu_item "New Category", new_category_path %>
+    <% end %>
+    
+    <% if user_signed_in? %>
+        <%= menu_group pull: :right do %>
+        	<%= menu_item "Sign Out", destroy_user_session_path,method: :delete %>
+        <%end%>
+    <% else %>
+        <%= menu_group pull: :right do %>
+            <%= menu_item "Sign In",new_user_session_path %>
+            <%= menu_item "Sign Up",new_user_registration_path %>
+        <% end %>
+    <% end %>
+<% end %>
+
+<%= yield %>
+	<p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+<%= render"layouts/footer" %>
+
+</body>
+</html>

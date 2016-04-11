@@ -1,0 +1,57 @@
+<div class="container" %>
+	<% if current_user %>
+		<% if current_user.role == "admin" %>
+			<div class="form-horizontal">
+					<center><h2 class="text-danger">Books</h2></center>
+					<%= form_for @book do |c| %>
+					
+						<div class="form-group">
+							<%= c.label :Categories,class:"control-label col-sm-2" %>
+						<div class="col-sm-8">
+							<%= select("book", "category_id", @categories.collect {|c| [ c.name, c.id ] }) %>
+						</div>
+						</div>
+
+						
+						<div class="form-group">
+				    		<%= c.label :book_name,class:"control-label col-sm-2" %>
+				    	<div class="col-sm-8">
+				      		<%= c.text_field :book_name, class:"form-control" %>
+				    	</div>
+				    	</div>
+
+
+						<div class="form-group">
+							<%= c.label :Description,class:"control-label col-sm-2" %>
+						<div class="col-sm-8">
+							<%= c.text_area :description,class:"form-control" %>
+						</div>
+						</div>
+
+						<%= c.submit "Save Book",class:"btn btn-sm btn-info col-sm-offset-2" %>
+					<% end %>
+				</div>
+			<% else %>
+			<h2><%= "Sorry,You can't create new book...." %></h2>
+		<% end %>
+	<% end %>
+
+	<% if @book.errors.present? %>
+		    <div id="error_explanation">
+		      <h3 class="text-danger">
+		        <%= pluralize(@book.errors.count, "error") %> prohibited
+		        this article from being saved:
+		      </h3>
+		      
+		      <ul>
+		        <% @book.errors.full_messages.each do |msg| %>
+		          <div class="alert alert-danger">
+		          	<li><%= msg %></li>
+		          </div>
+		        <% end %>
+		      </ul>
+		    
+		    </div>
+  		<% end %>
+
+</div>
